@@ -1,0 +1,78 @@
+/* ===== Desert Palette (from your choices) ===== */
+    :root{
+      --bg:#EDD9A3;     /* light dune */
+      --fg:#443742;     /* deep plum-brown */
+      --accent:#90323D; /* desert rose (CTAs) */
+      --sand:#CEA07E;   /* sandstone (cards) */
+      --muted:#8C7A6B;  /* dusty taupe */
+      --card:#FFF6E5;   /* pale sand */
+      --line:#DEC89C;   /* soft divider */
+      --radius:18px;
+      --shadow:0 12px 28px rgba(68,55,66,.15);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
+    img{max-width:100%;display:block;border-radius:12px;}
+    h1,h2,h3{margin:0 0 .5rem}
+    .container{max-width:1100px;margin-inline:auto;padding:1rem}
+
+    .card img {box-shadow:0 0 30px 5px rgba(110, 93, 45, 0.45); Filter: blur(1px);}
+
+    img:hover {
+    filter: blur(0);
+    }
+
+    /* Card & buttons */
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:1rem}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;border-radius:999px;padding:.6rem 1rem;border:1px solid var(--line);background:var(--card);color:var(--fg);text-decoration:none;cursor:pointer}
+    .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+    .btn.ghost{background:var(--bg)}
+    .btn:disabled{opacity:.6;cursor:not-allowed}
+
+    header{padding:1rem}
+    .frame{background:linear-gradient(180deg, #f0e4bf, #e6cf99);border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow);padding:1.25rem}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:1.25rem;align-items:center}
+    .kicker{color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-size:.9rem}
+    .chip{display:inline-block;border:1px solid var(--line);background:#f7ead1;color:var(--fg);padding:.35rem .7rem;border-radius:999px;font-size:.9rem}
+    .chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.75rem}
+
+    /* Sections */
+    section{padding:1.25rem 0}
+    .section-title{font-size:1.6rem}
+
+    /* Projects grid */
+    .grid{display:grid;gap:1rem}
+    .cols-3{grid-template-columns:repeat(3,1fr)}
+    .project h3{margin-top:.6rem}
+    .meta{color:var(--muted);font-size:.95rem}
+
+    /* Accordion */
+    details{border:1px solid var(--line);border-radius:12px;background:#f2dfb6;padding:.6rem 1rem}
+    details+details{margin-top:.6rem}
+    summary{cursor:pointer;font-weight:600}
+
+    /* About + Contact */
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .list{margin:.25rem 0 0 .95rem}
+
+    footer{padding:1.25rem 0;color:var(--muted)}
+
+    /* Modal (Contact Me) */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;padding:1rem}
+    .modal{width:min(640px,96vw);background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:1rem}
+    .modal header{display:flex;align-items:center;justify-content:space-between;padding:0;margin-bottom:.5rem}
+    .modal input,.modal textarea{width:100%;padding:.7rem;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--fg)}
+    .modal form .row{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+    .modal footer{display:flex;gap:.5rem;justify-content:flex-end;padding-top:.5rem}
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+      .cols-3{grid-template-columns:1fr 1fr}
+      .two-col{grid-template-columns:1fr}
+    }
+    @media (max-width: 560px){
+      .cols-3{grid-template-columns:1fr}
+    }
