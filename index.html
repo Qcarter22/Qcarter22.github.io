@@ -66,6 +66,7 @@
           <p><strong>Secondary Goal:</strong> Build a quarantined environment to test security measures and run malware-detection experiments safely.</p>
           <p><strong>Key Needs:</strong> Reliability, remote access, and strong cybersecurity.</p>
         </details>
+        
         <details>
           <summary>Research</summary>
           <h4>Hardware</h4>
@@ -92,6 +93,7 @@
           </ul>
           <p><strong>Research Outcome:</strong> Confirmed that a Docker-based architecture with separate networks, VPN tunneling, and automated backup scripts meets both user requirements and provides the safest path forward.</p>
         </details>
+        
         <details>
           <summary>Design</summary>
           <h4>Design Objectives</h4>
@@ -103,15 +105,16 @@
           <h4>System Architecture</h4>
           <ul>
           <li>Platform Choice: Docker containers separate Plex, Sonarr, Radarr, and other services for flexibility and clean rollbacks.</li>
-          <li>Host Hardware: Custom server rack with 100 TB of storage and ample CPU/RAM for transcoding and container overhead, plus a UPS for power protection.</li>
+          <li>Host Hardware: Custom server rack with 100 TB of storage and plenty of CPU/RAM power for transcoding and container overhead, plus a UPS for power protection.</li>
           <li>Networking: Service Network for media apps; Management/Sandbox Network for security tests; VPN Tunnel routes all external traffic to protect public IP exposure.</li>
           </ul>
           <h4>User Experience</h4>
           <p>User Flow Map</p>
           <img src="assets/User_User_Flow_Map_img.png" alt="User playback flow map">
           <p>Admin Flow Map</p>
-          <img src="assets/Admin_User_Flow_Map_img.png" alt="Administrator management and security-testing flow map">
+          <img src="assets/Admin_User_Flow_Map_img.png" alt="Admin management and security-testing flow map">
         </details>
+        
         <details>
           <summary>Implementation</summary>
           <h4>Environment Setup</h4>
@@ -176,12 +179,15 @@
 
   <!-- Contact Section -->
   <div class="modal-backdrop" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
+    
     <div class="modal">
       <header>
         <h3 id="contactTitle">Contact Quinn</h3>
         <button class="btn" id="closeContact" aria-label="Close">✕</button>
       </header>
+      
       <form id="contactForm">
+        
         <div class="row">
           <label>
             <span class="meta">Your name</span>
@@ -192,6 +198,7 @@
             <input name="phone" placeholder="+1 555 123 4567"/>
           </label>
         </div>
+        
         <div class="row" style="margin-top:.6rem">
           <label>
             <span class="meta">Your email</span>
@@ -199,23 +206,26 @@
           </label>
           <div></div>
         </div>
+        
         <label style="display:block;margin-top:.6rem">
           <span class="meta">Message</span>
           <textarea name="message" rows="6" required placeholder="How can I help?"></textarea>
         </label>
+        
         <footer>
           <button type="button" class="btn" id="cancelContact">Cancel</button>
           <button type="submit" class="btn primary">Send Email</button>
         </footer>
       </form>
+      
     </div>
   </div>
 
   <script>
-    // Year stamp
+    
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Modal open/close
+    // Modal for contact view
     const modal = document.getElementById('contactModal');
     const openBtn = document.getElementById('openContact');
     const closeBtn = document.getElementById('closeContact');
@@ -226,7 +236,7 @@
     cancelBtn?.addEventListener('click', ()=> toggleModal(false));
     modal?.addEventListener('click', (e)=>{ if(e.target === modal) toggleModal(false); });
 
-    // Form -> mailto composer with encoded body
+    // Form and composer/encrypter for email
     document.getElementById('contactForm')?.addEventListener('submit', (e)=>{
       e.preventDefault();
       const fd = new FormData(e.target);
