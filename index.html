@@ -10,17 +10,24 @@
 </head>
 
 <body>
+   <!-- Main content container -->
   <main class="container">
     <div class="frame">
       <!-- HERO Section -->
       <section class="hero">
         <div>
+          <!-- Primary page header for accessibility -->
           <h1>Aanii, I’m Quinn Carter</h1>
+          <!-- Subtext style set to "meta" class to give a lighter/secondary text tone -->
           <p class="meta">Welcome to my page. I hope you find it informative. </p>
+          <!-- Action buttons for resume download + open contact -->
           <div style="margin-top:.8rem;display:flex;gap:.5rem;flex-wrap:wrap">
+            <!-- "download" attribute triggers file download instead of navigation -->
             <a class="btn primary" href="assets/Quinn_Carter_Resume.pdf" download>Download Resume</a>
+            <!-- Hooked by JS to open modal -->
             <button class="btn" id="openContact">Contact me</button>
           </div>
+          <!-- Small skill/interest chips -->
           <div class="chips">
             <span class="chip">OS Management</span>
             <span class="chip">Networking</span>
@@ -28,26 +35,32 @@
           </div>
         </div>
         <div>
+          <!-- Hero image -->
           <img src="assets/Hero_img.png" alt="Stylized portrait / hero image"/>
         </div>
       </section>
 
       <!-- PROJECTS Section -->
+      
       <section>
         <h2 class="section-title">Projects</h2>
+        <!-- Responsive card grid (3 columns on desktop) -->
         <div class="grid cols-3" style="margin-top:.75rem">
+           <!-- Project card 1 -->
           <article class="card project">
             <img src="assets\Home_Lab_img.jpg" alt="Home lab dashboard with Plex and Portainer"/>
             <h3>Home Lab Setup</h3>
             <p class="meta">Configured and maintained a secure media server stack with...</p>
             <p><button class="btn">Read More</button></p>
           </article>
+           <!-- Project card 2 -->
           <article class="card project">
             <img src="assets\Ticketing_System_img.png" alt="Ticketing system demo table screenshot"/>
             <h3>Ticketing System Demo</h3>
             <p class="meta">Designed and implemented a barebones support workflow system.</p>
             <p><button class="btn">Read More</button></p>
           </article>
+           <!-- Project card 3 -->
           <article class="card project">
             <img src="assets\PC_Build_img.jpg" alt="Custom PC build photo inside case"/>
             <h3>PC Build Log</h3>
@@ -59,6 +72,7 @@
 
       <!-- UX CASE STUDY Section -->
       <section>
+        <!-- details/summary -->
         <h2 class="section-title">UX Case Study | Home Lab Setup</h2>
         <details>
           <summary>Overview</summary>
@@ -66,7 +80,7 @@
           <p><strong>Secondary Goal:</strong> Build a quarantined environment to test security measures and run malware-detection experiments safely.</p>
           <p><strong>Key Needs:</strong> Reliability, remote access, and strong cybersecurity.</p>
         </details>
-        
+        <!-- Research segment -->
         <details>
           <summary>Research</summary>
           <h4>Hardware</h4>
@@ -93,7 +107,8 @@
           </ul>
           <p><strong>Research Outcome:</strong> Confirmed that a Docker-based architecture with separate networks, VPN tunneling, and automated backup scripts meets both user requirements and provides the safest path forward.</p>
         </details>
-        
+
+        <!-- Design Segement -->
         <details>
           <summary>Design</summary>
           <h4>Design Objectives</h4>
@@ -114,7 +129,7 @@
           <p>Admin Flow Map</p>
           <img src="assets/Admin_User_Flow_Map_img.png" alt="Admin management and security-testing flow map">
         </details>
-        
+        <!-- Implementation -->
         <details>
           <summary>Implementation</summary>
           <h4>Environment Setup</h4>
@@ -221,16 +236,23 @@
     </div>
   </div>
 
+  
+<!-- Built in JavaScript. didnt think about making its own file until already and am now afraid i will break github if i try implementing it -->
+  
   <script>
     
+    // Set the current year in the footer automatically
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Modal for contact view
+    // Modal open/close logic
     const modal = document.getElementById('contactModal');
     const openBtn = document.getElementById('openContact');
     const closeBtn = document.getElementById('closeContact');
     const cancelBtn = document.getElementById('cancelContact');
-    const toggleModal = (show)=>{ modal.style.display = show ? 'flex' : 'none'; };
+    
+    // Show/hide function toggle
+    const toggleModal = (show)=>{ modal.style.display = show ? 'flex' : 'none'; }
+    //Triggers
     openBtn?.addEventListener('click', ()=> toggleModal(true));
     closeBtn?.addEventListener('click', ()=> toggleModal(false));
     cancelBtn?.addEventListener('click', ()=> toggleModal(false));
@@ -239,14 +261,20 @@
     // Form and composer/encrypter for email
     document.getElementById('contactForm')?.addEventListener('submit', (e)=>{
       e.preventDefault();
+      // Creates a formdata object
       const fd = new FormData(e.target);
+      // Pulls each field value to be safely put into a mailto link
       const name = encodeURIComponent(fd.get('name'));
       const phone = encodeURIComponent(fd.get('phone'));
       const email = encodeURIComponent(fd.get('email'));
       const message = encodeURIComponent(fd.get('message'));
+
+      // Encode values for safe inclusion in a URL
       const subject = encodeURIComponent(`Portfolio inquiry from ${fd.get('name')}`);
       const body = encodeURIComponent(`Name: ${fd.get('name')}\nPhone: ${fd.get('phone')||'-'}\nEmail: ${fd.get('email')}\n\nMessage:\n${fd.get('message')}`);
+      // This launchs the users email client and fills in subject and body with prefab content
       window.location.href = `mailto:quinn.carter.it@gmail.com?subject=${subject}&body=${body}`;
+      // Closes modal and cleats form after composing
       toggleModal(false);
       e.target.reset();
     });
