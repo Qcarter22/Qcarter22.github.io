@@ -13,7 +13,7 @@
   <!-- Skip link for keyboard users -->
   <a class="skip-link" href="#main">Skip to main content</a>
 
-  <!-- Semantic header/nav -->
+  <!-- header/nav -->
   <header role="banner">
     <nav aria-label="Primary">
       <a class="brand" href="/">Quinn Carter</a>
@@ -89,18 +89,85 @@
         </details>
 
         <details>
+          
+        <details>
           <summary>Research</summary>
-          <!-- (your existing content unchanged) -->
+          <h4>Hardware</h4>
+          <ul>
+          <li>Commercial NAS Platforms: Reviewed Synology and QNAP feature sets (Plex integration, RAID redundancy, mobile apps) to learn best practices for reliability and user onboarding.</li>
+          <li>Cloud Services: Compared Google Drive, Dropbox, OneDrive, and Mega Drive against local storage to weigh cost and privacy trade-offs.</li>
+          <li><strong>Takeaway:</strong> A DIY Docker stack gives greater control over security layers and flexibility to add services like VPNs, automated downloaders, and isolated testing containers.</li>
+          </ul>
+          <h4>Community Insight</h4>
+          <ul>
+          <li>Forums & Subreddits: Explored r/homelab, r/cybersecurity, and r/Docker to identify recurring pain points—VPN misconfiguration, accidental data exposure, and container-networking issues.</li>
+          <li>Peer Interviews: Spoke with a family member who built a similar setup for advice on hardware selection, UPS considerations, and backup strategies.</li>
+          </ul>
+          <h4>Security & Malware Testing Requirements</h4>
+          <ul>
+          <li>Threat Modeling: Analyzed attack patterns (malicious torrents, weak default passwords, container breakouts) to guide isolation strategies.</li>
+          <li>Security Standards: Applied OWASP recommendations for container security—network segmentation, SSL certificates, and least-privilege principles.</li>
+          <li>Safe Testing Tools: Investigated EICAR test files and MalwareBazaar samples to create a legitimate sandbox environment without endangering production data.</li>
+          </ul>
+          <h4>User Goals</h4>
+          <ul>
+          <li>Friendly Users: Want high-quality playback, fast loading, simple login, and reliable remote access with no technical knowledge required.</li>
+          <li>Administrator (Me): Needs a platform to experiment with firewall rules, VPN configuration, and malware detection while keeping household media secure and accessible.</li>
+          </ul>
+          <p><strong>Research Outcome:</strong> Confirmed that a Docker-based architecture with separate networks, VPN tunneling, and automated backup scripts meets both user requirements and provides the safest path forward.</p>
         </details>
 
-        <details>
+         <details>
           <summary>Design</summary>
-          <!-- (your existing content unchanged) -->
+          <h4>Design Objectives</h4>
+          <ol>
+          <li>Provide a reliable, user-friendly media-streaming service for family and friends.</li>
+          <li>Create a secure sandbox for testing container configurations, firewall rules, and malware simulations.</li>
+          <li>Keep the system maintainable and scalable so services can be added or upgraded with minimal downtime.</li>
+          </ol>
+          <h4>System Architecture</h4>
+          <ul>
+          <li>Platform Choice: Docker containers separate Plex, Sonarr, Radarr, and other services for flexibility and clean rollbacks.</li>
+          <li>Host Hardware: Custom server rack with 100 TB of storage and plenty of CPU/RAM power for transcoding and container overhead, plus a UPS for power protection.</li>
+          <li>Networking: Service Network for media apps; Management/Sandbox Network for security tests; VPN Tunnel routes all external traffic to protect public IP exposure.</li>
+          </ul>
+          <h4>User Experience</h4>
+          <p>User Flow Map</p>
+          <img src="assets/User_User_Flow_Map_img.png" alt="User playback flow map">
+          <p>Admin Flow Map</p>
+          <img src="assets/Admin_User_Flow_Map_img.png" alt="Admin management and security-testing flow map">
         </details>
 
-        <details>
+       <details>
           <summary>Implementation</summary>
-          <!-- (your existing content unchanged) -->
+          <h4>Environment Setup</h4>
+          <ul>
+          <li>Hardware: Custom server rack with 18-core CPU, 32 GB GPU, 128 GB RAM, 100 TB RAID storage, and UPS backup.</li>
+          <li>Operating System: Windows 11 Enterprise with Ubuntu LTS for stable Docker hosting.</li>
+          <li>Container Platform: Docker and Docker-Compose for modular, isolated containers and easy rollbacks.</li>
+          </ul>
+          <h4>Service Deployment</h4>
+          <ul>
+          <li>Core Stack: Plex (media streaming), qBittorrentVPN (secure file acquisition), Homarr (web-based container management).</li>
+          <li>Networking: Two Docker networks—Service for media apps and Sandbox for security tests. Configured qBittorrent with VPN for encrypted external access and VPN-only admin dashboards.</li>
+          </ul>
+          <h4>Security Implementation</h4>
+          <ul>
+          <li>Deployed a dedicated sandbox container with EICAR test files and ClamAV intrusion-detection tools to safely evaluate firewall rules and malware detection.</li>
+          <li>Implemented nightly automated encrypted backups and scheduled Docker health checks.</li>
+          </ul>
+          <h4>Automation & Maintenance</h4>
+          <ul>
+          <li>Automated media ingestion using Sonarr/Radarr triggers to refresh the Plex library immediately after downloads.</li>
+          <li>Configured a Watchtower container to pull and deploy updated images for automatic security patches.</li>
+          </ul>
+          <h4>Testing & Validation</h4>
+          <ul>
+          <li>User Testing: Family members streamed content locally and remotely to confirm playback stability and ease of navigation.</li>
+          <li>Security Testing: Ran EICAR malware samples and simulated port-scan attacks inside the sandbox to verify isolation and monitoring alerts.</li>
+          <li>Performance Monitoring: Used Docker to track CPU/RAM usage and logs; adjusted container limits to keep peak CPU below 80%.</li>
+          </ul>
+          <p><strong>Outcome:</strong> Achieved ~95% uptime across ten months with automatic failover recovery and confirmed secure isolation of the sandbox network—no cross-traffic detected during malware simulations.</p>
         </details>
       </section>
 
